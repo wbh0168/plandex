@@ -1,0 +1,8 @@
+{
+  "label": "UI Management Interface",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Manage various aspects of your Plandex instance through the UI."
+  }
+}

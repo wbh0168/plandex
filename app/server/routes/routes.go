@@ -182,6 +182,18 @@ func addApiRoutes(r *mux.Router, prefix string) {
 
 	HandlePlandexFn(r, prefix+"/default_plan_config", false, handlers.GetDefaultPlanConfigHandler).Methods("GET")
 	HandlePlandexFn(r, prefix+"/default_plan_config", false, handlers.UpdateDefaultPlanConfigHandler).Methods("PUT")
+
+	// Project Managed Files
+	HandlePlandexFn(r, prefix+"/projects/{projectId}/files/upload", false, handlers.UploadProjectFileHandler).Methods("POST")
+	HandlePlandexFn(r, prefix+"/projects/{projectId}/files", false, handlers.ListProjectFilesHandler).Methods("GET")
+	HandlePlandexFn(r, prefix+"/projects/{projectId}/files/download/{filename}", false, handlers.DownloadProjectFileHandler).Methods("GET")
+	HandlePlandexFn(r, prefix+"/projects/{projectId}/files/{filename}", false, handlers.DeleteProjectFileHandler).Methods("DELETE")
+
+	// Project Command Execution
+	HandlePlandexFn(r, prefix+"/projects/{projectId}/commands", false, handlers.ExecuteCommandHandler).Methods("POST")
+
+	// Code Interaction
+	HandlePlandexFn(r, prefix+"/projects/{projectId}/code/interact", false, handlers.CodeInteractionHandler).Methods("POST")
 }
 
 func addProxyableApiRoutes(r *mux.Router, prefix string) {
